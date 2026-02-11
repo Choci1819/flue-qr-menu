@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flue QR Menu</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">Flue.</a>
+        <div id="cart-icon" class="cart-icon" role="button" title="Cart">
+            <i class='bx bx-shopping-bag'></i>
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <div id="menu-icon" class="menu-icon"><i class='bx bx-menu'></i></div>
+        <nav class="navbar">
+            <a href="#card">Menu</a>
+            <a href="#about-section">About Us</a> 
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <div id="cart-panel" class="cart-panel hidden" aria-hidden="true"></div>
+
+    <section class="card" id="card">
+        <div class="card-container" id="category-cards-container">
+            <div class="card-box" data-category="sicakicecekler"> 
+                <img src="images/hot1.jpg" alt="Sıcak İçecekler">
+                <h4 class="bottom-left">Sıcak İcecekler</h4> 
+            </div>
+            <div class="card-box" data-category="tatlilar">
+                <img src="images/tatlı1.jpg" alt="Tatlılar">
+                <h4 class="bottom-left">Tatlılar</h4> 
+            </div>
+            <div class="card-box" data-category="herbalteas">
+                <img src="images/herbal1.jpg" alt="Herbal Teas">
+                <h4 class="bottom-left">Herbal Teas</h4> 
+            </div>
+            <div class="card-box" data-category="coctails">
+                <img src="images/coctail3.jpg" alt="Coctails">
+                <h4 class="bottom-left">Coctails</h4> 
+            </div>
+            <div class="card-box" data-category="smoothies">
+                <img src="images/smoothie3.jpg" alt="Smoothie">
+                <h4 class="bottom-left">Smoothie</h4> 
+            </div>
+            <div class="card-box" data-category="brewbar">
+                <img src="images/filtrekahve.png" alt="Brew Bar">
+                <h4 class="bottom-left">Brew Bar</h4> 
+            </div>
+            <div class="card-box" data-category="yemekler">
+                <img src="images/yemek1.jpg" alt="Yemekler">
+                <h4 class="bottom-left">Yemekler</h4> 
+            </div>
+        </div>
+        
+        <div id="menu-content-display" class="menu-display hidden">
+            <button id="back-to-categories" class="back-button"><i class='bx bx-arrow-back'></i> Back</button>
+            
+            <h2 id="category-title" class="menu-title"></h2>
+            
+            <div id="category-items-list" class="items-list">
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="about" id="about-section">
+        <h2>About Us</h2>
+        <p>At Flue we bring fresh, high-quality and unique flavors to our guests...</p>
+    </section>
+    <footer class="footer">
+        <p>Design & Development: Berkay Karakus (<a href="https://berkaykrks.netlify.app" target="_blank" class="author-link">berkaykrks</a>)</p>
+        <p>&copy; 2025 Berkay. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

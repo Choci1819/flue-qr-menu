@@ -1,0 +1,467 @@
+/* Global reset and font (Poppins or Inter from Google Fonts recommended) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* New background color */
+body {
+    background-color: #5f2222; /* Koyu kırmızı/kahverengi ton */
+    color: #f0f0f0; /* Metin rengini açık hale getirdik */
+}
+
+/* ---------------------------------
+    1. Header and Navigation
+------------------------------------ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    background: #5f2222; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+}
+
+.logo {
+    font-size: 28px;
+    color: #f0f0f0; 
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.navbar a {
+    font-size: 16px;
+    color: #f0f0f0; 
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #ffcc00; 
+}
+
+.menu-icon {
+    font-size: 26px;
+    color: #f0f0f0; 
+    cursor: pointer;
+    display: none; 
+}
+
+/* Cart icon in header */
+.cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #f0f0f0;
+    cursor: pointer;
+    position: relative;
+    margin-right: 12px;
+}
+
+.cart-icon .bx {
+    font-size: 22px;
+}
+
+.cart-count {
+    background: #ffcc00;
+    color: #2a1700;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 999px;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Simple cart panel */
+.cart-panel {
+    position: fixed;
+    right: 20px;
+    top: 70px;
+    width: 280px;
+    max-height: 60vh;
+    overflow: auto;
+    background: #3b2323;
+    color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    padding: 12px;
+    z-index: 2000;
+}
+
+.cart-panel .cart-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.cart-panel .cart-item:last-child { border-bottom: none; }
+
+.cart-panel .cart-empty { text-align: center; padding: 12px; color: #d9cfcf; }
+
+.cart-panel .cart-actions { display:flex; gap:8px; margin-top:8px; }
+.cart-panel button { background:#ffcc00; color:#2a1700; border:none; padding:8px 10px; border-radius:6px; cursor:pointer; font-weight:700 }
+.cart-panel button.secondary { background:transparent; color:#ffcc00; border:1px solid rgba(255,204,0,0.15) }
+
+/* ---------------------------------
+    2. Category Cards (.card-container)
+------------------------------------ */
+.card {
+    padding: 120px 5% 50px; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto; 
+    justify-items: stretch; 
+}
+
+.card-box {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    aspect-ratio: 16 / 9; 
+}
+
+.card-box:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+}
+
+.card-box img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s;
+}
+
+.card-box:hover img {
+    opacity: 0.9; 
+}
+
+.card-box h4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    margin: 0;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s ease; 
+}
+
+/* Hide title on hover */
+.card-box:hover h4 {
+    opacity: 0;
+}
+
+/* ---------------------------------
+    3. Dynamic Menu Content (.menu-display)
+------------------------------------ */
+.menu-display {
+    padding: 20px 5%;
+    max-width: 800px; 
+    margin: 0 auto;
+    background-color: #472121; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #ffcc00; 
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 25px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #e6b800; 
+}
+
+.back-button .bx {
+    margin-right: 8px;
+    font-size: 1.3rem;
+}
+
+.menu-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #f0f0f0; 
+    border-bottom: 3px solid #ffcc00; 
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.items-list {
+    background: #5C3D3D; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* New CSS styles for image support */
+.menu-item {
+    /* Use flex layout to align image and content */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 15px; /* Gap between image and content */
+    padding: 20px;
+    border-bottom: 1px solid #7a5a5a;
+    position: relative; /* For positioning price on mobile */
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+    /* Image container */
+.item-image-container {
+    width: 90px; 
+    height: 90px; 
+    min-width: 90px; 
+    border-radius: 8px; 
+    overflow: hidden;
+    flex-shrink: 0; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* Content-only section */
+.menu-item-content {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    flex-grow: 1; 
+    max-width: 100%; 
+}
+
+.menu-item.with-image .menu-item-content {
+    /* Fotoğraf varsa içeriğin kapladığı alanı kısıtlarız */
+    max-width: calc(100% - 105px); /* 90px resim + 15px boşluk */
+}
+
+/* Product name and description area */
+.menu-item-content .item-text-info {
+    flex-grow: 1;
+    max-width: 90%; /* Fiyat için yer bırakırız */
+}
+
+
+.menu-item h3 {
+    font-size: 1.2rem;
+    color: #f0f0f0; 
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.menu-item .description {
+    font-size: 0.9rem;
+    color: #ccc; 
+}
+
+.menu-item .price {
+    font-size: 1.2rem;
+    color: #ffcc00; 
+    font-weight: 700;
+    align-self: flex-end; /* Fiyatı sağa hizalar */
+    min-width: 60px; /* Fiyatın kaymasını önler */
+}
+
+/* ---------------------------------
+    4. About Section
+------------------------------------ */
+.about {
+    padding: 50px 5%;
+    text-align: center;
+    background-color: #5f2222; 
+    border-top: 1px solid #7a5a5a;
+    color: #f0f0f0; 
+}
+
+.about h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #f0f0f0; 
+}
+
+.about p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc; 
+}
+
+
+/* ---------------------------------
+    5. Media Queries (Responsive Layout)
+------------------------------------ */
+
+/* Tablet (min-width: 600px) */
+@media (min-width: 600px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* Desktop (min-width: 992px) */
+@media (min-width: 992px) {
+    .card-container {
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 40px;
+    }
+
+    .card-container > .card-box:nth-child(7) {
+        grid-column: 2 / 3; 
+        max-width: 300px; 
+        margin: 0 auto; 
+    }
+    
+    .menu-icon {
+        display: none; 
+    }
+    
+    .menu-item-content {
+        flex-direction: row; /* Keep price and item side-by-side on desktop */
+    }
+    
+    .menu-item-content .item-text-info {
+        max-width: 75%;
+    }
+
+    .menu-item .price {
+        align-self: flex-start;
+    }
+}
+
+/* Mobile menu and content media query */
+@media (max-width: 768px) {
+    /* ... Mobile navigation styles (unchanged) ... */
+
+    .header {
+        padding: 15px 5%;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+
+    .menu-icon {
+        display: block; 
+    }
+    
+    .navbar.active {
+        display: block; 
+    }
+
+    .card {
+        padding-top: 80px; 
+    }
+
+    /* Updated mobile menu item */
+    .menu-item {
+        flex-direction: row; /* Image and content side-by-side */
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .menu-item.with-image .menu-item-content {
+        max-width: 70%; /* Content width when image present */
+    }
+
+    .menu-item-content {
+        flex-direction: column; /* Mobile: name and description stacked */
+        margin-right: 60px; /* Leave space for price */
+    }
+
+    .menu-item .price {
+        /* Position price at the top-right of the card */
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 1.1rem;
+        align-self: flex-end; 
+    }
+}
+
+/* ---------------------------------
+  6. Footer (Altbilgi)
+------------------------------------ */
+.footer {
+    padding: 20px 5%;
+    background: #462626; 
+    border-top: 1px solid #7a5a5a;
+    text-align: center;
+    color: #f0f0f0; 
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer p:first-child {
+    font-weight: 600;
+}
+
+.footer .author-link {
+    color: #ffcc00; 
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .author-link:hover {
+    color: #e6b800; 
+    text-decoration: underline;
+}

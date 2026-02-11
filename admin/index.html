@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flue QR Menu Admin</title>
+  
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#5f2222;color:#fff;padding:20px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;border:1px solid rgba(255,255,255,0.06);text-align:left}
+    .muted{color:#d3c7c7;font-size:0.9rem}
+    .controls{display:flex;gap:8px}
+    button{background:#ffcc00;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
+  </style>
+  <h1>Kitchen / Admin Orders</h1>
+  <div class="controls"><button id="refresh-orders">Refresh</button><button id="clear-orders">Clear All Orders</button></div>
+  <div id="orders-root" class="orders-root">
+    <div class="muted">No orders yet. Orders saved when customers checkout.</div>
+  </div>
+
+  <script>
+    function renderOrders(){
+      const root = document.getElementById('orders-root');
+      try{
+        const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+        if(!orders || orders.length===0){ root.innerHTML = '<div class="muted">No orders yet. Orders saved when customers checkout.</div>'; return; }
+        let html = '<table><thead><tr><th>Order ID</th><th>Table</th><th>Items</th><th>Qty</th><th>Time</th></tr></thead><tbody>';
+        orders.slice().reverse().forEach(o=>{
+          const items = o.items.map(i=>`${i.name} (${i.qty})`).join('<br>');
+          html += `<tr><td>${o.id}</td><td>${o.table}</td><td>${items}</td><td>${o.totalQty}</td><td>${new Date(o.createdAt).toLocaleString()}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        root.innerHTML = html;
+      }catch(e){ root.innerHTML = '<div class="muted">Could not read orders</div>'; console.error(e); }
+    }
+    document.getElementById('refresh-orders').addEventListener('click', renderOrders);
+    document.getElementById('clear-orders').addEventListener('click', ()=>{ if(!confirm('Clear all orders?')) return; localStorage.removeItem('orders'); renderOrders(); });
+    renderOrders();
+  </script>
+
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>
