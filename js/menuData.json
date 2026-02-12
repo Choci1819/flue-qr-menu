@@ -1,17 +1,17 @@
 {
   "sicakicecekler": [
     {
-      "ad": "Çay",
-      "aciklama": "Çay 200 derecede hazırlanmıştır ",
-      "fiyat": "1251 TL",
+      "ad": "Tea",
+      "aciklama": "Prepared at 200 degrees",
+      "fiyat": "12.50 TL",
       "fotograf_url": "/images/herbal1.jpg"
     }
   ],
   "tatlilar": [
     {
-      "ad": "brownie",
-      "aciklama": "brownie sıcak ve akışkan",
-      "fiyat": "3 $",
+      "ad": "Brownie",
+      "aciklama": "Warm and gooey brownie",
+      "fiyat": "$3.00",
       "fotograf_url": "/images/brownie.jpg"
     }
   ],
